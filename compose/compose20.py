@@ -89,7 +89,18 @@ TOTAL = float(DATA.get("total", FRAMES[-1]["t"]))
 NOSE_DEG = DATA["emoji"]          # {"plane": -44.18, "car": 180.0, ...}
 WALKS = DATA.get("walks", [])     # [[t0, t1], ...] rt windows drawn dashed
 
-FONT_PATH = "/mnt/c/Windows/Fonts/msyh.ttc"
+# CJK label font -- first existing candidate wins (portable across hosts;
+# falls back to the classic error if none is present)
+_FONT_CANDIDATES = [
+    "/mnt/c/Windows/Fonts/msyh.ttc",                      # WSL Windows mount (tested)
+    "C:\\Windows\\Fonts\\msyh.ttc",                        # native Windows
+    "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc",     # Debian/Ubuntu
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "/usr/share/fonts/noto-cjk/NotoSansCJK-Regular.ttc",
+    "/System/Library/Fonts/PingFang.ttc",                 # macOS
+]
+FONT_PATH = next((p for p in _FONT_CANDIDATES if os.path.exists(p)),
+                 _FONT_CANDIDATES[0])
 FONT_ZH = ImageFont.truetype(FONT_PATH, 34)
 FONT_EN = ImageFont.truetype(FONT_PATH, 20)
 SPRITE_BASE = 150     # every sprite's LONGEST side at scale 1.0 -- one base

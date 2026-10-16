@@ -14,7 +14,7 @@ usage: python3 mad_check.py <frames_dir> [--win 30] [--top 5]
   <frames_dir>  directory of f%05d.jpg (0- or 1-indexed, auto-detected)
   --win N       per-window size in frames (default 30 = 1 second @30fps)
   --top N       how many worst windows to list (default 5)
-Env: PYTHONPATH must reach PIL (e.g. PYTHONPATH=~/workspace/google-earth/pylibs).
+Env: PYTHONPATH must reach PIL (a virtualenv or any directory containing PIL/).
 """
 import os
 import sys

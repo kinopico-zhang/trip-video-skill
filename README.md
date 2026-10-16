@@ -8,8 +8,8 @@
 git clone git@github.com:kinopico-zhang/trip-video-skill.git
 # 方式一：直接 clone 进 Claude Code 的 skill 目录
 git clone git@github.com:kinopico-zhang/trip-video-skill.git ~/.claude/skills/trip-video
-# 方式二：clone 到任意位置，软链过去（本机部署方式）
-ln -s ~/workspace/trip-video-skill ~/.claude/skills/trip-video
+# 方式二：clone 到任意位置，软链过去
+ln -s <clone 路径> ~/.claude/skills/trip-video
 ```
 
 repo 根即 skill（`SKILL.md` 在根目录）；Claude Code 会自动发现并按需加载。
@@ -43,7 +43,7 @@ references/                  深度参考
 | 依赖 | 说明 |
 |---|---|
 | node ≥ 22 | cdp/ 脚本用全局 WebSocket/fetch |
-| Pillow | 合成器唯一 Python 依赖；`PYTHONPATH` 指向任意含 Pillow 的路径（本机 `~/workspace/google-earth/pylibs`） |
+| Pillow | 合成器唯一 Python 依赖；`PYTHONPATH` 指向任意含 Pillow 的路径（或装进所用解释器的环境） |
 | ffmpeg | 解码渲染帧 / 最终编码（crf 18） |
 | Windows Chrome + CDP | `--headless=new --remote-debugging-port=9222` + 独立 user-data-dir，登录 Earth Studio |
 | CJK 字体 | compose20.py `FONT_PATH` 指向 msyh.ttc，按机器改 |
